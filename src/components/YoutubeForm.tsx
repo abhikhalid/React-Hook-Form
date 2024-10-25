@@ -56,7 +56,7 @@ export default function YoutubeForm() {
     formState,
      watch,
       getValues, 
-      setValue} = form;
+      setValue,reset} = form;
 
  const {errors, touchedFields, dirtyFields, isDirty, isValid, isSubmitting, isSubmitted, isSubmitSuccessful, submitCount} = formState;
  
@@ -93,18 +93,24 @@ export default function YoutubeForm() {
     setValue('phNumbers.0.number', '1234567890');
   }
 
+  useEffect(() => {
+    if(isSubmitSuccessful){
+      reset();
+    }
+  },[isSubmitSuccessful,reset]);
+
   // const watchUsername =  watch('username');
   // const watchUsername =  watch();
 
-  useEffect(() => {
-    const subscription = watch((value) => {
-      console.log(value);
-    })
+  // useEffect(() => {
+  //   const subscription = watch((value) => {
+  //     console.log(value);
+  //   })
   
-    return () => {
-      subscription.unsubscribe();
-    }
-  }, [watch]);
+  //   return () => {
+  //     subscription.unsubscribe();
+  //   }
+  // }, [watch]);
   
 
   return (
@@ -243,6 +249,7 @@ export default function YoutubeForm() {
             <button disabled={!isDirty || !isValid || isSubmitting}>Submit</button>
             <button type='button' onClick={handleGetValues}>Get values</button>
             <button type='button' onClick={handleSetValues}>Set value</button>
+            <button type='button' onClick={()=> reset()}>Reset</button>
         </form>
         
         <DevTool control={control}/>
