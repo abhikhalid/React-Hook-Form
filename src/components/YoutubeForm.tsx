@@ -49,7 +49,7 @@ export default function YoutubeForm() {
   }
 );
 
- const {register, control, handleSubmit, formState, watch} = form;
+ const {register, control, handleSubmit, formState, watch, getValues} = form;
 
  const {errors} = formState;
  
@@ -62,8 +62,14 @@ export default function YoutubeForm() {
     console.log('Form Submitted', data);
   }
 
+  const handleGetValues = () => {
+    // console.log(getValues());
+    // console.log(getValues('social'));
+    console.log(getValues(['username', 'email']));
+  }
+
   // const watchUsername =  watch('username');
-  const watchUsername =  watch();
+  // const watchUsername =  watch();
 
   useEffect(() => {
     const subscription = watch((value) => {
@@ -80,7 +86,7 @@ export default function YoutubeForm() {
     <div>
       {/* noValidate : this will prevent browser validation allowing react hook form to handle the validation of the fields*/}
        
-        <h2>Watched value: {watchUsername}</h2>
+        {/* <h2>Watched value: {watchUsername}</h2> */}
 
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
             <div className='form-control'>
@@ -207,6 +213,7 @@ export default function YoutubeForm() {
             </div>
 
             <button>Submit</button>
+            <button type='button' onClick={handleGetValues}>Get values</button>
         </form>
         
         <DevTool control={control}/>
