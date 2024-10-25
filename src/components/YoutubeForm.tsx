@@ -1,5 +1,6 @@
 import {useForm, useFieldArray} from 'react-hook-form';
 import {DevTool} from '@hookform/devtools';
+import { useEffect } from 'react';
 
 
 type FormValues = {
@@ -48,7 +49,7 @@ export default function YoutubeForm() {
   }
 );
 
- const {register, control, handleSubmit, formState} = form;
+ const {register, control, handleSubmit, formState, watch} = form;
 
  const {errors} = formState;
  
@@ -61,9 +62,26 @@ export default function YoutubeForm() {
     console.log('Form Submitted', data);
   }
 
+  // const watchUsername =  watch('username');
+  const watchUsername =  watch();
+
+  useEffect(() => {
+    const subscription = watch((value) => {
+      console.log(value);
+    })
+  
+    return () => {
+      subscription.unsubscribe();
+    }
+  }, [watch]);
+  
+
   return (
     <div>
       {/* noValidate : this will prevent browser validation allowing react hook form to handle the validation of the fields*/}
+       
+        <h2>Watched value: {watchUsername}</h2>
+
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
             <div className='form-control'>
               <label htmlFor="username">Username</label>
