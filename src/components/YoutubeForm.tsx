@@ -9,7 +9,8 @@ type FormValues = {
     social:{
       twitter: string;
       facebook: string;
-    }
+    };
+    phoneNumbers: string[];
 }
 
 export default function YoutubeForm() {
@@ -22,7 +23,8 @@ export default function YoutubeForm() {
     social: {
       twitter: '',
       facebook: ''
-    }
+    },
+    phoneNumbers: ["", ""]
   }
 
   //load saved data
@@ -106,6 +108,16 @@ export default function YoutubeForm() {
             <div className='form-control'>  
               <label htmlFor="facebook">Facebook</label>
               <input type="text"  id="channel" {...register('social.facebook')} />
+            </div>
+          
+            <div className='form-control'>  
+              <label htmlFor="primary-phone">Primary phone number</label>
+              <input type="text"  id="primary-phone" {...register('phoneNumbers.0')} />
+            </div>
+
+            <div className='form-control'>  
+              <label htmlFor="secondary-phone">Secondary phone number</label>
+              <input type="text"  id="secondary-phone" {...register('phoneNumbers.1')} />
             </div>
 
             <button>Submit</button>
