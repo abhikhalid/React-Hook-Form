@@ -6,6 +6,10 @@ type FormValues = {
     username: string;
     email: string;
     channel: string;
+    social:{
+      twitter: string;
+      facebook: string;
+    }
 }
 
 export default function YoutubeForm() {
@@ -14,7 +18,11 @@ export default function YoutubeForm() {
   defaultValues: {
     username: 'Batman',
     email: '',
-    channel: ''
+    channel: '',
+    social: {
+      twitter: '',
+      facebook: ''
+    }
   }
 
   //load saved data
@@ -88,6 +96,16 @@ export default function YoutubeForm() {
               <label htmlFor="channel">Channel</label>
               <input type="text"  id="channel" {...register('channel')} />
               <p className='error'>{errors.channel?.message}</p>
+            </div>
+           
+            <div className='form-control'>  
+              <label htmlFor="twitter">Twitter</label>
+              <input type="text"  id="channel" {...register('social.twitter')} />
+            </div>
+            
+            <div className='form-control'>  
+              <label htmlFor="facebook">Facebook</label>
+              <input type="text"  id="channel" {...register('social.facebook')} />
             </div>
 
             <button>Submit</button>
