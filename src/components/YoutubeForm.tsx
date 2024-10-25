@@ -58,9 +58,9 @@ export default function YoutubeForm() {
       getValues, 
       setValue} = form;
 
- const {errors, touchedFields, dirtyFields} = formState;
+ const {errors, touchedFields, dirtyFields, isDirty, isValid} = formState;
  
- console.log({touchedFields, dirtyFields});
+ console.log({touchedFields, dirtyFields, isDirty, isValid});
 
 
  const {fields, append, remove} =  useFieldArray({
@@ -239,7 +239,7 @@ export default function YoutubeForm() {
               <p className='error'>{errors.dob?.message}</p>
             </div>
 
-            <button>Submit</button>
+            <button disabled={!isDirty || !isValid}>Submit</button>
             <button type='button' onClick={handleGetValues}>Get values</button>
             <button type='button' onClick={handleSetValues}>Set value</button>
         </form>
