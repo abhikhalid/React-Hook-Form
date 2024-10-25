@@ -49,7 +49,14 @@ export default function YoutubeForm() {
   }
 );
 
- const {register, control, handleSubmit, formState, watch, getValues} = form;
+ const {
+  register, 
+  control,
+   handleSubmit,
+    formState,
+     watch,
+      getValues, 
+      setValue} = form;
 
  const {errors} = formState;
  
@@ -66,6 +73,16 @@ export default function YoutubeForm() {
     // console.log(getValues());
     // console.log(getValues('social'));
     console.log(getValues(['username', 'email']));
+  }
+
+  const handleSetValues = () => {
+    setValue('username', 'Superman',{
+      shouldValidate: true,
+      shouldDirty: true,
+      shouldTouch: true
+    });
+    setValue('social.twitter', 'Superman');
+    setValue('phNumbers.0.number', '1234567890');
   }
 
   // const watchUsername =  watch('username');
@@ -214,6 +231,7 @@ export default function YoutubeForm() {
 
             <button>Submit</button>
             <button type='button' onClick={handleGetValues}>Get values</button>
+            <button type='button' onClick={handleSetValues}>Set value</button>
         </form>
         
         <DevTool control={control}/>
