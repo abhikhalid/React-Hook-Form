@@ -1,4 +1,4 @@
-import {useForm, useFieldArray} from 'react-hook-form';
+import {useForm, useFieldArray, FieldErrors} from 'react-hook-form';
 import {DevTool} from '@hookform/devtools';
 import { useEffect } from 'react';
 
@@ -72,6 +72,10 @@ export default function YoutubeForm() {
     console.log('Form Submitted', data);
   }
 
+  const onError = (errors: FieldErrors<FormValues>) => {
+    console.log('Form errors',errors);
+  }
+
   const handleGetValues = () => {
     // console.log(getValues());
     // console.log(getValues('social'));
@@ -108,7 +112,7 @@ export default function YoutubeForm() {
        
         {/* <h2>Watched value: {watchUsername}</h2> */}
 
-        <form onSubmit={handleSubmit(onSubmit)} noValidate>
+        <form onSubmit={handleSubmit(onSubmit, onError)} noValidate>
             <div className='form-control'>
               <label htmlFor="username">Username</label>
               <input 
