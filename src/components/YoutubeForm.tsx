@@ -13,7 +13,9 @@ type FormValues = {
     phoneNumbers: string[];
     phNumbers: {
       number: string;
-    }[]
+    }[];
+    age: number;
+    dob: Date;
 }
 
 export default function YoutubeForm() {
@@ -28,7 +30,9 @@ export default function YoutubeForm() {
       facebook: ''
     },
     phoneNumbers: ["", ""],
-    phNumbers: [{number: ''}]
+    phNumbers: [{number: ''}],
+    age: 0,
+    dob: new Date()
   }
 
   //load saved data
@@ -154,6 +158,34 @@ export default function YoutubeForm() {
                       Add phone number
                     </button>
               </div>
+            </div>
+
+            <div className='form-control'>  
+              <label htmlFor="age">Age</label>
+              <input
+                 type="number"  
+                 id="age" 
+                 {...register('age',{
+                  valueAsNumber: true,
+                   required:{
+                      value: true,
+                      message: 'Age is required',
+                   },
+                 })} 
+              />
+              <p className='error'>{errors.age?.message}</p>
+            </div>
+
+            <div className='form-control'>  
+              <label htmlFor="dob">Date of Birth</label>
+              <input type="date"  id="dob" {...register('dob',{
+                valueAsDate:true,
+                required:{
+                  value: true,
+                  message: 'Date of birth is required',
+                }
+              })} />
+              <p className='error'>{errors.dob?.message}</p>
             </div>
 
             <button>Submit</button>
