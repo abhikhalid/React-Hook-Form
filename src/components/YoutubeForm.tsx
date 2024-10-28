@@ -34,7 +34,12 @@ export default function YoutubeForm() {
     phNumbers: [{number: ''}],
     age: 0,
     dob: new Date()
-  }
+  },
+  // mode: 'onSubmit'  ny default 'onSubmit' is used
+  // mode: 'onBlur',
+  // mode: 'onTouched',
+  // mode: 'onChange', // becareful because it will trigger validation on every key stroke and causes multiple re-renders
+  mode: 'all' 
 
   //load saved data
   // defaultValues: async () => {
