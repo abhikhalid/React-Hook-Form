@@ -35,11 +35,12 @@ export default function YoutubeForm() {
     age: 0,
     dob: new Date()
   },
-  // mode: 'onSubmit'  ny default 'onSubmit' is used
+  // by default 'onSubmit' is used
+  mode: 'onSubmit'  
   // mode: 'onBlur',
   // mode: 'onTouched',
   // mode: 'onChange', // becareful because it will trigger validation on every key stroke and causes multiple re-renders
-  mode: 'all' 
+  // mode: 'all' 
 
   //load saved data
   // defaultValues: async () => {
@@ -55,13 +56,15 @@ export default function YoutubeForm() {
 );
 
  const {
-  register, 
-  control,
-   handleSubmit,
+    register, 
+    control,
+    handleSubmit,
     formState,
-     watch,
-      getValues, 
-      setValue,reset} = form;
+    watch,
+    getValues, 
+    setValue,reset,
+    trigger
+  }  = form;
 
  const {errors, touchedFields, dirtyFields, isDirty, isValid, isSubmitting, isSubmitted, isSubmitSuccessful, submitCount} = formState;
  
@@ -260,6 +263,10 @@ export default function YoutubeForm() {
             <button type='button' onClick={handleGetValues}>Get values</button>
             <button type='button' onClick={handleSetValues}>Set value</button>
             <button type='button' onClick={()=> reset()}>Reset</button>
+            {/* <button type='button' onClick={()=> trigger()}>Validate</button> */}
+            {/* <button type='button' onClick={()=> trigger("email")}> */}
+              Validate
+            </button>
         </form>
         
         <DevTool control={control}/>
