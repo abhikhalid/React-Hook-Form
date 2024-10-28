@@ -264,7 +264,7 @@ export default function YoutubeForm() {
             <button type='button' onClick={handleSetValues}>Set value</button>
             <button type='button' onClick={()=> reset()}>Reset</button>
             {/* <button type='button' onClick={()=> trigger()}>Validate</button> */}
-            {/* <button type='button' onClick={()=> trigger("email")}> */}
+            <button type='button' onClick={()=> trigger("email")}>
               Validate
             </button>
         </form>
